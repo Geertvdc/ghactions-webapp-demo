@@ -39,7 +39,9 @@ jobs:
         
   deploy:
     needs: build
-
+    
+    environment: staging_environment
+    
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
