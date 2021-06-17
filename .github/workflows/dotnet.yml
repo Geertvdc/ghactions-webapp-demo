@@ -57,11 +57,6 @@ jobs:
         with:
           app-name: ghactions-webapp-demo
           package: webapp/webapp.zip
-
-#       - shell: pwsh
-#         run: |
-#             ./drop/deploy-webapp.ps1 -resourceGroupName aegis-apis `
-#                               -packageSource './drop/api.zip' `
-#                               -webAppName aegis-apis-teams `
-#                               -serviceName teams `
-#                               -environmentCode dev
+          
+      - name: deploy to azure
+        run: az webapp deployment source config-zip --src webapp/webapp.zip --ids ghactions-webapp-demo
