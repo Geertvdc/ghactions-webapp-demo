@@ -34,3 +34,32 @@ jobs:
       with:
         name: webapp
         path: dotnet/ghactions-dotnet-demo/webapp.zip
+        
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: webapp
+          path: webapp
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Azure WebApp
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ghactions-webapp-demo
+          package: webapp/webapp.zip
+
+#       - shell: pwsh
+#         run: |
+#             ./drop/deploy-webapp.ps1 -resourceGroupName aegis-apis `
+#                               -packageSource './drop/api.zip' `
+#                               -webAppName aegis-apis-teams `
+#                               -serviceName teams `
+#                               -environmentCode dev
