@@ -29,8 +29,8 @@ jobs:
     - name: Publish
       run: dotnet publish --no-build --output ./published
     - name: Package
-      run: (cd ./published && zip -r ../webapp.zip .)
+      run: (cd ./published && zip -r webapp.zip .)
     - uses: actions/upload-artifact@v2
       with:
         name: webapp
-        path: ../webapp.zip
+        path: webapp.zip
