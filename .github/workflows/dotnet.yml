@@ -59,4 +59,4 @@ jobs:
           package: webapp/webapp.zip
           
       - name: deploy to azure
-        run: az webapp deployment source config-zip --src webapp/webapp.zip --ids ghactions-webapp-demo
+        run: az webapp deployment source config-zip --src webapp/webapp.zip -n ghactions-webapp-demo -g ghactions-webapp-demo
